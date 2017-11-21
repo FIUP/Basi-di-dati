@@ -1,0 +1,38 @@
+\section{Algebra Relazionale}
+\subsection{Venditori, Prodotto, Listino}
+\subsubsection{Quesito}
+
+È dato uno schema di basi di dati costituito dalle relazioni:
+\\
+\indent \textbf{VENDITORE}(\underline{vid}, vnome, indirizzo) \\
+\indent \textbf{PRODOTTO}(\underline{pid}, pnome, colore, peso) \\
+\indent \textbf{LISTINO}(\underline{vid}, \underline{pid}, prezzo) \\
+
+Esistono dei vincoli di integrità referenziale tra vid di VENDITORE
+e vid di LISTINO, e tra pid di PRODOTTO e pid di LISTINO. \\
+
+Formulare in algebra relazionale le seguenti interrogazioni:
+\begin{enumerate}
+  \item Trovare i nomi dei venditori che forniscono prodotti rossi o prodotti verdi
+  \item Trovare i nomi dei venditori che hanno a listino almeno due prodotti rossi
+  \item Trovare l'id dei venditori che hanno a listino solo prodotti verdi
+  \item Trovare l'id dei prodotti a listino più pesanti
+\end{enumerate}
+
+\subsubsection{Soluzioni}
+
+\begin{enumerate}
+  \item $\Pi_{vnome}(VENDITORE \bowtie LISTINO \bowtie \sigma_{colore="rosso" \lor color="verde"}(PRODOTTO))$
+  \item
+    S1 := $\sigma_{color="rosso"}(PRODOTTO)$ \\
+    S2 := $\Pi_{pid,vid}(LISTINO \bowtie S1)$ \\
+    S3 := $\rho_{pid1,vid1 \leftarrow pid,vid}(S2)$ \\
+    $\Pi_{vnome}(\sigma_{pid \neq pid1 \land vid = vid1}(S2 \bowtie S3) \bowtie PRODOTTO$
+  \item
+    S1 := $LISTINO \bowtie \sigma_{colore \neq "verde"} (PRODOTTO))$ \\
+    $\Pi_{pid}(LISTINO - S1)$
+  \item
+    S1 := $\rho_{pid1,pnome1,colore1,peso1 \leftarrow pid,nome,colore,peso}(PRODOTTO)$ \\
+    S2 := $\sigma_{peso>peso1}(PRODOTTO \bowtie S1)$
+    $\Pi_{pid}(S2)$
+\end{enumerate}

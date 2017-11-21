@@ -1,0 +1,77 @@
+\section{Definizioni}
+\subsection{Modello Relazionale}
+\subsubsection{Definizione chiave e superchiave}
+
+Un sottoinsieme $K$ di attributi è superchiave per uno schema di relazione $r$
+se, per ogni coppia di tuple distinte, i valori assunti dalle
+tuple in corrispondenza non sono tutti uguali.
+
+\noindent
+Una chiave è una superchiave minimale, ovvero una superchiave alla quale,
+tolto un qualunque attributo, non è più superchiave. In altre parole, non
+esiste un'altra superchiave $K^1$ di r che sia contenuta in k come sottoinsieme proprio.
+
+\noindent
+Ogni chiave è superchiave,
+ma in generale non vale il viceversa.
+
+\subsection{Algebra e Calcolo Relazionale}
+\subsubsection{Definizione di Join}
+Operatore che permette di correlare dati contenuti in relazioni diverse,
+confrontando i valori contenuti in esse. Esiste in più varianti.
+
+\subsubsection{Definizione di Natural Join}
+Operatore binario che correla dati in relazioni diverse, sulla base di valori
+uguali, in attibuti con lo stesso nome.
+
+\noindent
+Simbolo: $\bowtie$
+
+\noindent
+Proprietà:
+
+\begin{enumerate}
+  \item Commutatività: $r1 \bowtie r2 = r2 \bowtie r1$
+  \item Associatività $r1 \bowtie (r2 \bowtie r3) = (r1 \bowtie r2) \bowtie r3$
+  \item Se gli insiemi $X_1$ e $X_2$ di attributi di due tuple sono uguali, allora i
+  Natural Join coincide con un'intersezione.
+  \item Se gli insiemi $X_1$ e $X_2$ di attributi di due tuple sono disgiunti, allora i
+  Natural Join coincide con il prodotto cartesiano.
+\end{enumerate}
+
+\subsubsection{Definizone di Theta Join}
+Operatore definito come il prodotto cartesiano seguito da una selezione, nel modo seguente
+(dove $F$ è una formula proposizionale utilizzabile in una selezione, e dove le relazioni
+$r_1$ e $r_2$ non hanno attributi in comune):
+
+\begin{displaymath}
+  r_1 \bowtie_{F} r_2 = \sigma_{F}(r_1 \bowtie r_2)
+\end{displaymath}
+
+\subsubsection{Definizione di Equi Join}
+L'Equi Join non è altro che un Theta Join in cui la condizione di selezione $F$
+sia una congiunzione di uguaglianza, con un attributo della prima relazione $r1$
+e uno della seconda $r2$.
+
+\subsection{Progettazione Concettuale}
+\subsubsection{Definizione strategia di progetto top-down}
+
+Nella strategia top-down, lo schema concettuale viene prodotto mediante raffinamenti
+successivi a partire da uno schema iniziale che, pur descrivendo tutte le specifiche,
+resta astratto. Tale schema viene a via a via raffinato aumentando il livello di dettagli,
+ma mantiene le medesime informazioni. Tutti gli aspetti presenti nello schema finale
+sono presenti a ogni livello di raffinamento.
+
+\noindent
+PRO: il progettista può inizialmente descrivere tutte le specifiche dei dati
+trascurandone i dettagli
+
+\noindent
+CONTRO: è necessario possedere sin dall'inizio una visione globale di tutte le componenti
+del sistema
+
+\subsubsection{Definizione strategia di progetto bottom-up}
+
+Nella strategia bottom-up si suddividono le specifiche in modo da sviluppare
+diversi schemi elementari ma dettagliati, che successivamente vengono integrati
+tra di loro. Tale strategia favorisce lo sviluppo in team.
