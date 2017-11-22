@@ -4,7 +4,7 @@ Dato lo schema relazionale $R(A,B)$, trovare il minimo/massimo in R.
 Si supponga di voler determinare il minimo $B$:
 
 \begin{displaymath}
-  \Pi_{B}(R) - \Pi_{B}(R \bowtie_{B>B^1}(\rho{A^1,B^1 \leftarrow A,B}(R)))
+  \pi_{B}(R) - \pi_{B}(R \bowtie_{B>B^1}(\rho{A^1,B^1 \leftarrow A,B}(R)))
 \end{displaymath}
 
 Nella seconda parte vengono trovati tutti quei valori che non sono il minimo.
@@ -22,5 +22,5 @@ Esempio con la relazione \textbf{ESAMI} e l'attributo Voto:
 
 \begin{gather*}
   S1 := \rho_{Studente^1,Corso^1,Data^1,Voto^1 \leftarrow Studente,Corso,Data,Voto}(\textbf{ESAMI}) \\
-  \Pi_{Voto}(\textbf{ESAMI}) - \Pi_{Voto}(\textbf{ESAMI} \bowtie_{Voto>Voto^1}(S1))
+  \pi_{Voto}(\textbf{ESAMI}) - \pi_{Voto}(\textbf{ESAMI} \bowtie_{Voto>Voto^1}(S1))
 \end{gather*}

@@ -21,17 +21,17 @@ Formulare in algebra relazionale le seguenti interrogazioni:
 \subsubsection{Soluzioni}
 
 \begin{enumerate}
-  \item $\Pi_{vnome}(VENDITORE \bowtie LISTINO \bowtie \sigma_{colore="rosso" \lor color="verde"}(PRODOTTO))$
+  \item $\pi_{vnome}(VENDITORE \bowtie LISTINO \bowtie \sigma_{colore="rosso" \lor color="verde"}(PRODOTTO))$
   \item
     S1 := $\sigma_{color="rosso"}(PRODOTTO)$ \\
-    S2 := $\Pi_{pid,vid}(LISTINO \bowtie S1)$ \\
+    S2 := $\pi_{pid,vid}(LISTINO \bowtie S1)$ \\
     S3 := $\rho_{pid1,vid1 \leftarrow pid,vid}(S2)$ \\
-    $\Pi_{vnome}(\sigma_{pid \neq pid1 \land vid = vid1}(S2 \bowtie S3) \bowtie PRODOTTO$
+    $\pi_{vnome}(\sigma_{pid \neq pid1 \land vid = vid1}(S2 \bowtie S3) \bowtie PRODOTTO$
   \item
     S1 := $LISTINO \bowtie \sigma_{colore \neq "verde"} (PRODOTTO))$ \\
-    $\Pi_{pid}(LISTINO - S1)$
+    $\pi_{pid}(LISTINO - S1)$
   \item
     S1 := $\rho_{pid1,pnome1,colore1,peso1 \leftarrow pid,nome,colore,peso}(PRODOTTO)$ \\
     S2 := $\sigma_{peso>peso1}(PRODOTTO \bowtie S1)$
-    $\Pi_{pid}(S2)$
+    $\pi_{pid}(S2)$
 \end{enumerate}
