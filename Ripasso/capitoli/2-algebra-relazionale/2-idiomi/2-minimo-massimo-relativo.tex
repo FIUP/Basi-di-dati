@@ -1,0 +1,19 @@
+\subsubsection{Minimo e Massimo relativo}
+
+Dato lo schema relazionale $R(A,B)$, trovare per ogni $A$ il minimo/massimo in R.
+Si supponga di voler determinare il massimo $B$ in $A$:
+
+\begin{displaymath}
+  \Pi_{A,B}(R) - \Pi_{A,B}(R \bowtie_{A=A^1 \land B<B^1}(\rho{A^1,B^1 \leftarrow A,B}(R)))
+\end{displaymath}
+
+È molto simile al massimo assoluto. Il theta join in questo caso seleziona tutti i valori
+minimi di $B$ per ogni attributo $A$.
+
+\noindent
+Esempio con la relazione \textbf{ESAMI} in cui $A$ sia Studente e $B$ sia Voto:
+
+\begin{gather*}
+  S1 := \rho_{Studente^1,Voto^1 \leftarrow Studente,Voto}(\textbf{ESAMI}) \\
+  \Pi_{Nome,Voto}(\textbf{ESAMI}) - \Pi_{Nome,Voto}(\textbf{ESAMI} \bowtie_{Studente=Studente^1 \land Voto<Voto^1}(S1))
+\end{gather*}

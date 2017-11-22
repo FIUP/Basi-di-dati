@@ -1,0 +1,36 @@
+\subsubsection{Cardinalità}
+
+Dato lo schema relazionale $R(A,B)$, trovare gli $A$ che sono associati ad almeno 2 $B$:
+
+\begin{displaymath}
+  \Pi_{A}(R \bowtie_{A=A^1 \land B \neq B^1}(\rho{A^1,B^1 \leftarrow A,B}(R)))
+\end{displaymath}
+
+Viene ancora fatto un theta join tra la relazione $R$ e se stessa con gli attributi
+ridenominati. Il predicato del join consente di mantenere tutte quelle tuple in cui
+l'attributo $A$ è uguale e $B$ è diverso. Queste tuple sono proprio tutte le tuple di $B$
+associate almeno 2 volte ad ogni elemento di $A$. \\
+
+\noindent
+Dato lo schema relazionale $R(A,B)$, trovare gli $A$ che sono associati ad almeno 3 $B$:
+
+\begin{gather*}
+  S1 := \rho_{A^1,B^1 \leftarrow A,B}(R) \\
+  S2 := \rho_{A^2,B^2 \leftarrow A,B}(R) \\
+  S3 := R \times S1 \times S2
+  \Pi_{A}(\sigma_{A=A^1 \land A=A^2 \land B \neq B^1 \land B \neq B^2 \land B^1 \neq B^2}(S3))
+\end{gather*}
+
+Viene fatto il prodotto cartesiano della relazione e dei suoi due duplicati con gli attributi
+rinominati. Dalla relazione che otteniamo cosi facendo, vengono selezionate le tuple che
+soddisfano il predicato di selezione, ovvero tutte le tuple in cui $A$ è associato ad almeno
+3 $B$. I generale per trovare gli $A$ che sono associati ad almeno $n$ $B$ bisogna fare: \\
+\begin{center}
+  \begin{tabular}{|r|l|}
+    \hline
+    $(n-1)$ & prodotti cartesiani \\
+    $(n-1)$ & condizioni della forma $A=A^i$ \\
+    $\frac{n(n-1)}{2}$ & condizioni della forma $B^i \neq B^j$ \\
+    \hline
+  \end{tabular}
+\end{center}

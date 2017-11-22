@@ -1,0 +1,21 @@
+\subsubsection{Per Ogni}
+
+Dato lo schema relazionale $R(A,B,C)$, trovare gli $A$ per i quali tutti i $C$ sono positivi.
+
+\begin{displaymath}
+  \Pi_{A}(R) - \Pi_{A}(\sigma_{C \leq 0}(R))
+\end{displaymath}
+
+A tutti gli $A$ si vogliono togliere quegli $A$ per cui $C$ è negativo, ottenendo così
+gli $A$ per i quali tutti i $C$ sono positivi. \\
+
+\noindent
+Dato lo schema relazionale $R(A,B,C)$, trovare gli $A$ per i quali tutti i $C$ sono uguali.
+
+\begin{displaymath}
+  \Pi_{A}(R) - \Pi_{A}(R \bowtie_{A=A^1 \land C \neq C^1}(\rho_{A^1,B^1,C^1 \Leftarrow A,B,C}(R)))
+\end{displaymath}
+
+Il theta join permette di trovare tutti gli elementi di $A$ che non hanno tutti i $C$ uguali.
+Sottraendo ciò che troviamo dal join con l'insieme di tutti gli elementi, otteniamo gli $A$ per
+i quali tutti i $C$ sono uguali.

@@ -1,0 +1,23 @@
+\subsubsection{Inclusione}
+
+Dati gli schemi relazionali $R(A,B)$ e $S(B)$, trovare gli $A$ per i quali l'insieme
+dei $B$ associati include tutti gli elementi di $S$.
+
+\begin{displaymath}
+  \Pi_{A}(R) - \Pi_{A}((\Pi_{A}(R) \times S) - R)
+\end{displaymath}
+
+Esempio: \\
+
+\noindent
+\textbf{ESAME}(Studente, CCorso, Voto)
+\textbf{Corso}(CCorso, Docente) \\
+\noindent
+
+Determinare gli studenti che hanno passato tutti gli esami:
+
+\begin{gather*}
+  S1 := \Pi_{Studente,CCorso}(\textbf{STUDENTE}) \\
+  S2 := \Pi_{CCorso}(\textbf{CORSO}) \\
+  \Pi_{Studente}(S1) - \Pi_{Studente}((\Pi_{Studente}(S1) \times S2) - S1)
+\end{gather*}

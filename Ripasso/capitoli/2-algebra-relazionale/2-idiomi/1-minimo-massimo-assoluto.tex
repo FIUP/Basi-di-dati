@@ -1,0 +1,26 @@
+\subsubsection{Minimo e Massimo assoluto}
+
+Dato lo schema relazionale $R(A,B)$, trovare il minimo/massimo in R.
+Si supponga di voler determinare il minimo $B$:
+
+\begin{displaymath}
+  \Pi_{B}(R) - \Pi_{B}(R \bowtie_{B>B^1}(\rho{A^1,B^1 \leftarrow A,B}(R)))
+\end{displaymath}
+
+Nella seconda parte vengono trovati tutti quei valori che non sono il minimo.
+Per fare ciò si deve joinare la relazione $R$ con un'altra istanza di se stessa,
+con gli attributi ridenominati. La condizione del theta join indica che ogni attributo
+$B$ deve essere maggiore degli stessi attributi ridenominati. In tal modo vengono
+mantenute tutte le tuple tranne quella in cui l'attributo $B$ assume il valore minore. \\
+
+\noindent
+Per il Principio di Complementarietà, sottraendo dall'insieme iniziale l'insieme delle
+tuple dove $B$ non è il minimo, si ottiene proprio il valore minimo cercato. \\
+
+\noindent
+Esempio con la relazione \textbf{ESAMI} e l'attributo Voto:
+
+\begin{gather*}
+  S1 := \rho_{Studente^1,Corso^1,Data^1,Voto^1 \leftarrow Studente,Corso,Data,Voto}(\textbf{ESAMI}) \\
+  \Pi_{Voto}(\textbf{ESAMI}) - \Pi_{Voto}(\textbf{ESAMI} \bowtie_{Voto>Voto^1}(S1))
+\end{gather*}

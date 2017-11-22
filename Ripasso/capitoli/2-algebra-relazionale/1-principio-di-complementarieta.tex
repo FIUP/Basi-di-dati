@@ -1,0 +1,36 @@
+\subsection{Principio di complementarietà}
+
+Data un'interrogazione $q$ da realizzare in algebra relazionale, spesso la si può
+scomporre in sottointerrogazioni che possono corrispondere a diversi idiomi,
+frequentemente richiesti in sede d'esame. Molti di questi si basano sul \textbf{Principio di Complementarietà}:
+
+\begin{displaymath}
+  \sigma_{p}(R) \equiv R - \sigma_{\neg{p}}(R)
+\end{displaymath}
+
+La selezione fatta su una relazione $R$ con un predicato $p$, è uguale alla relazione $R$
+stessa meno la selezione su $R$ con predicato $p$ negato.
+
+\begin{center}
+  \begin{tabular}{ | l | l | l | c |}
+    \hline
+      \textbf{Studente} & \textbf{Corso} & \textbf{Data} & \textbf{Voto} \\ \hline
+      Luca & Basi di Dati & 23/11/2017 & 30 \\ \hline
+      Anna & Logica & 22/11/2017 & 22 \\ \hline
+      Marco & Programmazione & 20/09/2017 & 18 \\ \hline
+      Anna & Programmazione & 21/10/2017 & 30 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Per esempio nella relazione ESAMI, l’ insieme degli studenti che ha preso 30 è dato
+dall’ insieme di tutti gli studenti che hanno dato almeno un esame (quelli nella tabella
+\textbf{ESAMI}) meno tutti gli studenti che non hanno preso 30. Gli idiomi di interrogazione
+principali sono:
+
+\begin{enumerate}
+  \item Minimo e Massimo (assoluti o relativi)
+  \item Cardinalità
+  \item Per ogni
+  \item Inclusione
+\end{enumerate}
