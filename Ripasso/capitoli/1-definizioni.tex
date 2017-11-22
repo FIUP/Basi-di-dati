@@ -15,7 +15,52 @@ esiste un'altra superchiave $K^1$ di $r$ che sia contenuta in $K$ come sottoinsi
 Ogni chiave è superchiave,
 ma in generale non vale il viceversa.
 
+\subsubsection{Definizione Vincolo di integrità}
+
+Si tratta di una proprietà che deve essere soddisfatta dalle istanze che rappresentano
+informazioni corrette per l'applicazione. Ogni vincolo può essere visto come un predicato
+che associa ad ogni istanza il valore $vero$ o $falso$. Se e solo se il predicato assume
+il valore $vero$, allora si dice che l'istanza soddisfa il vincolo.
+Lo scopo di questi vincoli è di vietare una situazione indesiderata all'interno della
+base di dati.
+
+\subsubsection{Definizione Vincolo intrarelazionale}
+Vincolo il cui soddisfacimento è definito rispetto a singole relazioni della base di dati.
+Talvolta, il vincolo riguarda le tuple separatemente le une dalle altre.
+
+\subsubsection{Definizione Vincolo interrelazionale}
+Vincolo che coinvolge più relazioni. Permette di vietare una situazione indesiderata ad esempio
+richiedendo che un numero di matricola compaia nella relazione ESAMI solo se compare anche
+nella relazione STUDENTI.
+
+\subsubsection{Definizione Vincolo di integrità referenziale}
+Un vincolo di integrità referenziale tra un insieme di attributi $X$ di due relazioni
+$R_{1}$ e $R_{2}$ è soddisfatto se i valori su $X$ di ciascuna tupla dell'istanza di $R_{1}$
+compaiono come valori della chiave primaria dell'istanza di $R_{2}$.
+
 \subsection{Algebra e Calcolo Relazionale}
+
+\subsubsection{Definizione di Selezione}
+Operatore monadico il cui risultato ha gli stessi attributi dell'operando, e contiene solo
+le ennuple dell'operando che soddisfano la condizione specificata. La condizione deve essere
+un'espressione booleana. \\
+Si dice che la selezione effettua una decomposizione orizzontale. \\
+Simbolo: $\sigma_{F}(R)$
+
+\subsubsection{Definizione di Proiezione}
+Operatore monadico il cui risultato ha solo la parte specificata $Y$ degli attributi $X$ dell'operando,
+ma contiene tutte le ennuple dell'operando considerate solo sui valori di $Y$. \\
+Si dice che la proiezione effettua una decomposizione verticale. \\
+Simbolo: $\Pi_{Y_{1},...,Y^{N}}(R)$
+
+\subsubsection{Cardinalità Proiezione}
+Definedo $N$ la cardinalità della proiezione:
+
+\begin{enumerate}
+  \item se non esistono duplicati nelle ennuple dlel'operando $r_{1}$ allora $ N = \left\vert{r_{1}}\right\vert$
+  \item altrimenti, a causa dell'eliminazione dei duplicati si ottiene $ 0 \leq N < \left\vert{r_{1}}\right\vert $
+\end{enumerate}
+
 \subsubsection{Definizione di Join}
 Operatore che permette di correlare dati contenuti in relazioni diverse,
 confrontando i valori contenuti in esse. Esiste in più varianti.
@@ -53,6 +98,16 @@ L'Equi Join non è altro che un Theta Join in cui la condizione di selezione $F$
 sia una congiunzione di uguaglianza, con un attributo della prima relazione $r1$
 e uno della seconda $r2$.
 
+\subsection{Cardinalità Join}
+Definedo $N$ la cardinalità del join:
+
+\begin{enumerate}
+  \item se il join di $r_{1}$ e $r_{2}$ è completo allora $ 0 \leq N \leq max(\left\vert{r_{1}}\right\vert, \left\vert{r_{2}}\right\vert)$
+  \item se il join coinvolge una chiave di $r_{2}$, allora $ 0 \leq N \leq \left\vert{r_{1}}\right\vert$
+  \item se il join coinvolge una chiave di $r_{2}$ ed $\exists$ un vincolo di integrità referenziale
+        tra un attributo di $r_{1}$ e la chiave di $r_{2}$, allora $ N = \left\vert{r_{1}}\right\vert $
+\end{enumerate}
+
 \subsection{Progettazione Concettuale}
 \subsubsection{Definizione strategia di progetto top-down}
 
@@ -75,3 +130,10 @@ del sistema
 Nella strategia bottom-up si suddividono le specifiche in modo da sviluppare
 diversi schemi elementari ma dettagliati, che successivamente vengono integrati
 tra di loro. Tale strategia favorisce lo sviluppo in team.
+
+\subsubsection{Definizione strategia di progetto inside-out}
+
+Si tratta di un caso particolare della bottom-up. Inizialmente si individuano solo alcuni
+concetti importanti e poi si procede, a partire da questi, a "macchi d'olio"; si rappresentano
+cioè prima i concetti in relazione con quelli iniziali, per poi muoversi verso quelli più
+lontani, in una sorta di "navigazione" tra le specifiche.
