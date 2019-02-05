@@ -1,0 +1,180 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[english,italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%------Math------
+\usepackage{mathtools} %math package
+\usepackage{amssymb} %pacchetto per i simboli di matematica
+\usepackage{amsmath} %pacchetto di matematica
+\usepackage{amsthm} %pacchetto di matematica\raggedbottom
+
+%-------Margini------
+\usepackage{geometry}
+\geometry{a4paper,top=1cm,bottom=2cm,left=1.5cm,right=1.5cm,heightrounded}
+\raggedbottom
+
+
+\begin{document}
+    \author{Andrea Longo \and Sara Righetto}
+    \title{Terza Forma Normale}
+    \maketitle
+
+    Dato lo schema di relazione R(A,B,C,D,E,F) con dipendenze: \newline
+
+    \noindent
+    BD $\rightarrow$ F \newline
+    FE $\rightarrow$ BA \newline
+    F $\rightarrow$ C \newline
+    B $\rightarrow$ E \newline
+    C $\rightarrow$ A \newline
+    E $\rightarrow$ CD \newline
+
+    \noindent
+    a. Trovare la copertura ridotta. \newline
+    [Sostituire le dipendenze con altre equivalenti con un singolo attributo al secondo membro.] \newline
+
+    \noindent
+    BD $\rightarrow$ F \newline
+    FE $\rightarrow$ B \newline
+    FE $\rightarrow$ A \newline
+    F $\rightarrow$ C \newline
+    B $\rightarrow$ E \newline
+    C $\rightarrow$ A \newline
+    E $\rightarrow$ C \newline
+    E $\rightarrow$ D \newline
+
+    \noindent
+    [Verificare l'esistenza di attributi eliminabili al primo membro.] \newline
+
+    \noindent 
+    BD $\rightarrow$ F diventa B $\rightarrow$ E e E $\rightarrow$ D $\Rightarrow$ B $\rightarrow$ F \newline
+
+    \noindent
+    [Eliminazione degli attributi ridondanti.] \newline
+
+    \noindent %B-F
+    B $\rightarrow$ F calcolo la chiusura di B (senza considerare B $\rightarrow$ F). \newline
+    B$^+ =$ \{ E,C,D,A \} \newline
+
+    \noindent %FE -B
+    FE $\rightarrow$ B calcolo la chiusura di FE (senza considerare FE $\rightarrow$ B). \newline
+    FE$^+ =$ \{ F,E,A,C,D \} \newline
+
+    \noindent %FE-A
+    FE $\rightarrow$ A calcolo la chiusura di FE (senza considerare FE $\rightarrow$ A). \newline
+    A $\in$ FE$^+ =$ \{ F,E,B,C,D,A \} la dipendenza è implicata dalle altre e può essere eliminata. \newline 
+
+    \noindent %F-C
+    F $\rightarrow$ C calcolo la chiusura di F (senza considerare F $\rightarrow$ C). \newline
+    F$^+ =$ \{ F \} \newline
+
+    \noindent %B-E
+    B $\rightarrow$ E calcolo la chiusura di B (senza considerare B $\rightarrow$ E). \newline
+    B$^+ =$ \{ B,F,C,A \} \newline
+
+    \noindent %C-A
+    C $\rightarrow$ A calcolo la chiusura di C (senza considerare C $\rightarrow$ A). \newline
+    C$^+ =$ \{ C \} \newline
+
+    \noindent %E-C
+    E $\rightarrow$ C calcolo la chiusura di E (senza considerare E $\rightarrow$ C). \newline
+    E$^+ =$ \{ E,D \} \newline
+
+    \noindent %E-D
+    E $\rightarrow$ D calcolo la chiusura di E (senza considerare e $\rightarrow$ D). \newline
+    E$^+ =$ \{ E,C,A \} \newline
+
+    \noindent
+    La copertura ridotta (dopo aver rimosso FE $\rightarrow$ A) \newline
+
+    \noindent
+    B $\rightarrow$ F \newline
+    FE $\rightarrow$ B \newline
+    F $\rightarrow$ C \newline
+    B $\rightarrow$ E \newline
+    C $\rightarrow$ A \newline
+    E $\rightarrow$ C \newline
+    E $\rightarrow$ D \newline
+
+    \noindent
+    b. Trovare le chiavi di R partendo dalla copertura ridotta. \newline
+    [Raccolgo tutte le implicazioni per lettera] \\
+
+    \noindent
+    B$^+ =$ \{ B,F,C,A,D,E \} include tutti gli attributi quindi è \textbf{chiave}\newline
+    FE$^+ =$ \{ B,F,C,A,D,E \} include tutti gli attributi quindi è \textbf{chiave}\newline
+    F$^+ =$ \{ F,C,A \} \emph{non} è chiave \newline
+    C$^+ =$ \{ C,A \} \emph{non} è chiave \newline
+    E$^+ =$ \{ E,D,C,A \} \emph{non} è chiave \newline
+
+    \noindent
+    c. Dire quali dipendenze violano 3FN. \newline
+    [Per essere valide devono avere una chiave al primo membro oppure almeno una parte di chiave al secondo membro] \newline
+
+    \noindent
+    B $\rightarrow$ F non viola 3FN \newline
+    FE $\rightarrow$ B non viola 3FN  \newline
+    F $\rightarrow$ C viola 3FN \newline
+    B $\rightarrow$ E non viola 3FN \newline
+    C $\rightarrow$ A viola 3FN \newline
+    E $\rightarrow$ C viola 3FN \newline
+    E $\rightarrow$ D viola 3FN \newline
+
+    \noindent
+    d. Normalizzare lo schema in 3FN \newline
+    [Calcolo partizionamento, cioè membri con la stessa chiusura.] \newline
+
+    \( 
+    \left.
+    \begin{array}{l}
+    B \rightarrow F \\
+    FE \rightarrow B\\
+    B \rightarrow E \\
+    \end{array}
+    \right] R_1 $ dato che $ $B$^+ $/$ $FE$^+ = $\{ B,F,C,A,D,E \}$ 
+    \)
+    \newline
+
+    \(
+    \left.
+    \begin{array}{l}
+    F \rightarrow C \\
+    \end{array}
+    \right] R_2 $ dato che $ $F$^+ = $\{ F,C,A \}$
+    \) 
+    \newline
+    
+    \(
+    \left.
+    \begin{array}{l}
+    C \rightarrow A\\
+    \end{array}
+    \right] R_3 $ dato che C$^+ =$\{ C,A \}$
+    \)
+    \newline
+
+    \(
+    \left.
+    \begin{array}{l}
+    E \rightarrow C \\
+    E \rightarrow D \\
+    \end{array}
+    \right] R_4$ dato che E$^+ = $\{ E,D,C,A\}$ 
+    \)
+    \newline
+
+    \noindent
+    [Per ogni R$_N$ segno gli attributi coinvolti e come chiave metto il primo membro.] \newline
+
+    \noindent
+    R$_1$ (B,E,F) con chiave B, FE. \newline
+    R$_2$ (E,C,D) con chiave E. \newline
+    R$_3$ (C,A) con chiave C. \newline
+    R$_4$ (F,C) con chiave F. \newline
+
+
+
+\end{document}
+

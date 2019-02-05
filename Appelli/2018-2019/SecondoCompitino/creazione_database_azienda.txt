@@ -1,0 +1,91 @@
+
+
+SET FOREIGN_KEY_CHECKS=0;
+
+CREATE TABLE clienti(
+	codice bigint PRIMARY KEY ,
+	nome varchar(20) NOT NULL,
+	indirizzo varchar(40) NOT NULL,
+	p_iva char(11) UNIQUE
+);
+
+CREATE TABLE prodotti(
+	codice BIGINT PRIMARY KEY,
+	nome VARCHAR(20) NOT NULL,
+	descrizione VARCHAR(256) NOT NULL,
+	prezzo DECIMAL(8,2) NOT NULL
+);
+
+CREATE TABLE fatture(
+	codice BIGINT PRIMARY KEY,
+	cliente BIGINT NOT NULL,
+	data DATE NOT NULL,
+	FOREIGN KEY(CLIENTE) REFERENCES clienti(codice)
+);
+
+CREATE TABLE righefatture(
+	codice BIGINT PRIMARY KEY,
+	fattura BIGINT NOT NULL,
+	prodotto BIGINT NOT NULL,
+	quantita INTEGER NOT NULL,
+	prezzo DECIMAL(8,2),
+	FOREIGN KEY(fattura) REFERENCES fatture(codice),
+	FOREIGN KEY(prodotto) REFERENCES prodotti(codice)
+);
+
+INSERT INTO clienti VALUES('000001','Franco','Via Franco 7','01547895410'),
+	('000002','Roberta','Via Roberta 9','78945127895'),
+	('000003','Luca','Via Luca 141','45712457892'),
+	('000004','Rinaldo','Via Rinaldo 7','01547746410'),
+	('000005','Sara','Via Sara 18','78456401236'),
+	('000006','Carmelo','Via Carmelo 54','08226746410');
+
+INSERT INTO prodotti VALUES('500','Spaghetti','Spaghetti da mangiare','0.75'),
+	('501','Ravioli','Ravioli da mangiare','2'),
+	('502','Filetto','Filetto da mangiare','5'),
+	('503','Tiramisu','Tiramisu da mangiare','2'),
+	('504','Sorbetto','Sorbetto da mangiare','1.75');
+
+
+INSERT INTO fatture VALUES('1000','000001','1996-12-24'),
+	('1001','000003','1998-02-12'),
+	('1002','000004','2000-10-10'),
+	('1003','000005','2004-07-13'),
+	('1004','000006','2008-12-16')
+	('1005','000001','2010-12-24'),
+	('1006','000001','2010-12-30'),
+	('1007','000006','2011-01-02'),
+	('1008','000004','2011-07-24'),
+	('1009','000001','2010-12-06'),
+	('1010','000004','2010-07-12'),
+	('1011','000004','2010-05-05'),
+	('1012','000004','2010-09-05'),
+	('1013','000006','2010-06-05'),
+	('1014','000006','2010-03-05');
+
+
+INSERT INTO righefatture VALUES('1','1000','500','30','22.5'),
+	('2','1001','500','30','22.5'),
+	('3','1002','504','25','43.75'),
+	('4','1003','501','50','100'),
+	('5','1004','504','60','105'),
+	('6','1005','503','10','20'),
+	('7','1006','504','15','26.25'),
+	('8','1007','501','60','120'),
+	('9','1008','500','35','26.25'),
+	('10','1004','504','100','175'),
+	('11','1002','501','60','120'),
+	('12','1008','501','13','26'),
+	('13','1009','501','130','260'),
+	('14','1010','501','11','22'),
+	('15','1011','504','27','47.25'),
+	('16','1012','500','33','24.75'),
+	('17','1013','504','25','43.75'),
+	('18','1014','504','45','78.75'),
+	('19','1002','501','30','60');
+
+
+
+SET FOREIGN_KEY_CHECKS=1;
+
+
